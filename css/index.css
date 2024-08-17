@@ -52,7 +52,6 @@ header nav a:hover {
 }
 
 .hero {
-    background: url("photos/background.jpg") no-repeat center center / cover;
     background-size: 100% auto; /* set background size to 100% width and auto height */
     height: 100vh; /* set height to 100% of viewport height */
     padding: 2rem;
