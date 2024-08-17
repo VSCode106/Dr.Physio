@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sloth Booking</title>
+    <link rel="stylesheet" href="css/slotbooking.css">
+    <style>
+        .slot-box {
+            height: 50px;
+            width: 20%; /* make each slot 20% of the parent container's width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top; /* add this to fix the alignment */
+            cursor: pointer;
+        }
+        #slot-boxes {
+            height: 300px; /* set a fixed height for the parent container */
+            width: 100%; /* make the parent container full-width */
+            text-align: center; /* center the slots horizontally */
+        }
+        .available {
+            background-color: #0f0; /* green */
+            color: #000;
+        }
+        .unavailable {
+            background-color: #f00; /* red */
+            color: #fff;
+        }
+        .booked {
+            background-color: #f00; /* red */
+            color: #fff;
+        }
+        .date-heading {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="slotbooking.html">Slot</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>Sloth Booking</h1>
+        <div id="login-popup">
+            <div id="login-popup-content">
+                <h2>Login(Only For Admin)</h2>
+                <input type="text" id="username" placeholder="Enter username">
+                <input type="password" id="password" placeholder="Enter password">
+                <button id="login-btn">Login</button>
+                <p id="error-msg"></p>
+            </div>
+        </div>
+        <div id="slot-boxes"></div>
+        <script>
+            const slotBoxes = document.getElementById('slot-boxes');
+            const loginPopup = document.getElementById('login-popup');
+            const loginPopupContent = document.getElementById('login-popup-content');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginBtn = document.getElementById('login-btn');
+            const errorMsg = document.getElementById('error-msg');
+    
+            // Set the username and password (you can change these to whatever you want)
+            const username = 'AndeepPhysio';
+            const password = 'asdfghjkl';
+    
+            // Show the login popup
+            loginPopup.style.display = 'block';
+    
+            // Add event listener to the login button
+            loginBtn.addEventListener('click', () => {
+                const enteredUsername = usernameInput.value.trim();
+                const enteredPassword = passwordInput.value.trim();
+                if (enteredUsername === username && enteredPassword === password) {
+                    // Hide the login popup and redirect to slothandling.html
+                    loginPopup.style.display = 'none';
+                    window.location.href = 'slothandling.html';
+                } else {
+                    errorMsg.textContent = 'Invalid username or password';
+                }
+            });
+    
+        // create slot boxes
+        const today = new Date();
+        const dates = [];
+        for (let i = 0; i < 4; i++) {
+            const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+            dates.push({
+                date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+                slots: [
+                    `9:00 AM - 10:00 AM`,
+                    `10:00 AM - 11:00 AM`,
+                    `11:00 AM - 12:00 PM`,
+                    `12:00 PM - 1:00 PM`,
+                    `1:00 PM - 2:00 PM`,
+                    `2:00 PM - 3:00 PM`,
+                    `3:00 PM - 4:00 PM`,
+                    `4:00 PM - 5:00 PM`,
+                    `5:00 PM - 6:00 PM`,
+                    `6:00 PM - 7:00 PM`,
+                ],
+                bookedSlots: [] // add a separate bookedSlots array for each date
+            });
+        }
+
+        dates.forEach((date) => {
+            const bookedSlots = localStorage.getItem(`bookedSlots-${date.date}`) ? JSON.parse(localStorage.getItem(`bookedSlots-${date.date}`)) : [];
+            date.bookedSlots = bookedSlots;
+
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'date-div';
+
+            const dateHeading = document.createElement('h2');
+            dateHeading.className = 'date-heading';
+            dateHeading.textContent = date.date;
+            dateDiv.appendChild(dateHeading);
+
+            date.slots.forEach((slot) => {
+                const slotBox = document.createElement('div');
+                slotBox.className = 'slot-box';
+                slotBox.textContent = slot;
+
+                if (date.bookedSlots.includes(slot)) {
+                    slotBox.className += ' booked';
+                } else {
+                    slotBox.className += ' available';
+                }
+
+                dateDiv.appendChild(slotBox);
+            });
+
+            slotBoxes.appendChild(dateDiv);
+        });
+
+    </script>
+</body>
+</html>

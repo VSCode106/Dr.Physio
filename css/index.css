@@ -1,0 +1,132 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 40px;
+  margin-right: 20px;
+}
+
+header nav {
+  flex: 1;
+  text-align: right;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header nav li {
+  margin-left: 20px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: #ccc;
+}
+
+.hero {
+    background: url("/photos/background.jpg") no-repeat center center / cover;
+    background-size: 100% auto; /* set background size to 100% width and auto height */
+    height: 100vh; /* set height to 100% of viewport height */
+    padding: 2rem;
+    text-align: center; /* center the content */
+    display: flex; /* enable flexbox */
+    justify-content: center; /* center the content horizontally */
+    align-items: center; /* center the content vertically */
+}
+  
+.hero-content {
+    max-width: 80%; /* limit the width of the content */
+}
+  
+.hero h1, .hero p, .hero button {
+    color: #666; /* gray color for h1, p, and button */
+}
+  
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+  
+.hero p {
+    margin-bottom: 2rem;
+}
+  
+.hero button {
+    background: #666; /* gray background for the button */
+    color: #fff; /* white text color for the button */
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+  
+.hero button:hover {
+    background: #555; /* darker gray background on hover */
+}
+  
+  /* Center the Learn More button */
+.hero button {
+    display: block;
+    margin: 0 auto;
+}
+
+.services {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.services ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.services li {
+    margin-bottom: 20px;
+}
+
+.services i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.services h3 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    clear: both;
+}
